@@ -1,0 +1,31 @@
+Sean Brouwer		CS344		Spring 2019
+
+2.1:
+    a: The hill-climbing and simulated annealing solutions both solve the problem correctly.
+	b: Hill-climbing works more quickly than annealing as shown in one example below:
+		Hill-climbing time: 6.866455078125e-05 s
+		Annealing time:		0.004728555679321289 s
+	c: The starting value of x only affects the time taken to solve the problem as the distance
+		from the starting point to the end value is directly related to solving time.
+	d: The algorithms work by stepping by a factor of delta, so if 15 is unreachable from the
+		initial value by only delta size steps, the solutions will be incorrect. As long as the
+		solution is reachable by delta steps, the solution will be found more quickly with a
+		larger x value.
+	e: The exp_schedule() determines the time taken by the function to search, with lower time
+		being faster but less accurate.
+
+2.2:
+	a: Neither algorithm successfully solves the problem with default delta (1.0) and exp_schedule
+		values consistently. By lowering delta to 0.001 and raising the schedule limit to 10000
+		both of the algorithms are able to consistently solve the problem, but require more time
+		to solve it.
+	b: Once again, hill climbing proved to be the faster algorithm. Example times below:
+		Hill-climbing time:	0.0016210079193115234 s
+		Annealing time:		0.04597949981689453 s
+	c: Decreasing step size makes the results more accurate but take longer to compute. The step
+		must at least be lower than 0.1 to consistently reach the correct maximum
+	d: The maximum result is 30, 30, and the minimum result is approximately 2, 2. Both functions
+		compute these results relatively accurately, within 0.2 of the correct number.
+
+2.3:
+	a: 
