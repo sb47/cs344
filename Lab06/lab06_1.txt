@@ -1,0 +1,39 @@
+# Lab 6 Part 1
+# Sean Brouwer
+# Partners: Chris Walstra, Kelsey Brouwer
+
+1:  The program will sort books by genre.
+
+2:  All books given to the program must be sorted into the correct genre.
+
+3a: Because this is a supervised learning problem, the set of books supplied to the program
+    will have known genres that can be tested for correctness.
+ b: The key result is the predicted genre for the given book, that can be evaluated against the
+    known genres.
+ c: The model is determined to be a failure if it does not correctly sort books or does not
+    sort books at all.
+
+4a: The output for this ML model is a book and its predicted genre.
+ b: The output is two strings, the first returning the input (book) and the second the predicted
+    genre of the book.
+
+5a: The output will be supplied to the user immediately in a UI. This must happen within 10
+    seconds.
+ b: The output will be used by the user to find other books of the same genre to read next.
+
+6:  A rule based approach would be used. Sample rules:
+       if "magic" in book: book = fantasy
+       specific authors always sort into their genres
+       if "kiss" in book n times: book = romance
+
+7a: Our problem is best framed as a multi-class single-label classification which predicts a
+    single genre for each book we are given.
+ b: Our problem can be reduced to a binary classification (fiction or nonfiction)
+
+8:  Input: Author, title, text, summary
+    Output: Genre
+
+9:  Author, title, and summary come from Amazon.
+    Full texts come from Google Books or a similar resource.
+
+10: Author, title, and summary would be easy to obtain and would produce a reasonable outcome.
