@@ -1,0 +1,10 @@
+a:
+    Exercise 1: cities['Has saint name and large'] = (cities['Area square miles'] > 50) & cities['City name'].apply(lambda name: name.startswith('San'))
+                cities
+    Exercise 2: cities.reindex([7, 1, 4, 5])
+b:
+    Pandas has a very easy to use interface and has very mutable data. Also, the data printouts
+    are visually appealing
+c:
+    Data reordering is useful when wanting to sort by a specific category, such as population
+    or square mile area

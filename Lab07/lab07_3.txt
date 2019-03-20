@@ -1,0 +1,32 @@
+Part a:
+    Task 1:
+        california_housing_dataframe["rooms_per_person"] = (
+            california_housing_dataframe["total_rooms"] / california_housing_dataframe["population"])
+        calibration_data = train_model(
+            learning_rate=0.05,
+            steps=500,
+            batch_size=5,
+            input_feature="rooms_per_person")
+    Task 2:
+        plt.figure(figsize=(15, 6))
+        plt.subplot(1, 2, 1)
+        plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+        plt.subplot(1, 2, 2)
+        _ = california_housing_dataframe["rooms_per_person"].hist()
+    Task 3:
+        california_housing_dataframe["rooms_per_person"] = (
+            california_housing_dataframe["rooms_per_person"]).apply(lambda x: min(x, 5))
+        _ = california_housing_dataframe["rooms_per_person"].hist()
+        calibration_data = train_model(
+            learning_rate=0.05,
+            steps=500,
+            batch_size=5,
+            input_feature="rooms_per_person")
+        _ = plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+Part b:
+    Synthetic features are useful for comparisons of specific data by
+    creating ratios of data sets for analysis.
+Part c:
+    Outliers are data points that lay outside the normal range of data.
+    Outliers are often not counted when conducting analysis on data
+    because their extreme values will skew the results.

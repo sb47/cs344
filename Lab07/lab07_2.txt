@@ -1,0 +1,24 @@
+a:
+    Categorical data is stored as strings while numerical data is stored as numbers.
+b:
+    Ex 1:
+            train_model(
+            learning_rate=0.00002,
+            steps=400,
+            batch_size=6
+            )
+        Output:
+            Final RMSE (on training data): 171.40
+    Ex 2:
+            train_model(
+            learning_rate=0.00002,
+            steps=1000,
+            batch_size=5,
+            input_feature="population"
+)
+        Output:
+            Final RMSE (on training data): 175.99
+c:
+    The Hyper-parameters in this exercise are the learning_rate, the number of steps, and the batch_size.
+    These parameters are used to determine the details of the model used to make predictions.
+    I did not find a standard tuning method for these parameters.
