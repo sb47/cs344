@@ -1,0 +1,25 @@
+Part a:
+    Seaborn is complimentary to Matplotlib and specializes in data
+    visualization. Seaborn also makes difficult tasks in Matplotlib
+    easier to perform.
+
+Part b:
+    The dataset has nearly 400 entries. This number of entries is rather
+    low for training a model, especially when splitting the dataset into
+    training, testing, and validation sets.
+
+Part c:
+    Normalization will ensure that all data uses the same scales and
+    ranges, making it much easier to compare data points on a strictly
+    numerical basis.
+
+Part d:
+    Although this example is a regression problem, most of the
+    characteristics analyzed do not follow a linear model, most of them
+    instead following a quadratic or other power function model.
+
+Part e:
+    I agree that smaller datasets prefer smaller networks because of
+    overfitting. With a small dataset, overfitting occurs very easily
+    and can be best avoided by using smaller, simpler networks without
+    as many layers.

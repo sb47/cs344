@@ -1,0 +1,116 @@
+Part a:
+    FTRL will scale the learning rate differently for different
+    coefficients. This scaling occurs based on the specified learning
+    rate, defined to be the same for all runs.
+Part b:
+    Bucketing/binning can divide a dataset into sections that each have
+    different trends. The given example has buckets for less-populated
+    city blocks, mid-populated city blocks, and highly-populated city
+    blocks.
+Part c:
+    Task 1:
+        def construct_feature_columns():
+          households = tf.feature_column.numeric_column("households")
+          longitude = tf.feature_column.numeric_column("longitude")
+          latitude = tf.feature_column.numeric_column("latitude")
+          housing_median_age = tf.feature_column.numeric_column("housing_median_age")
+          median_income = tf.feature_column.numeric_column("median_income")
+          rooms_per_person = tf.feature_column.numeric_column("rooms_per_person")
+          # Divide households into 7 buckets.
+          bucketized_households = tf.feature_column.bucketized_column(
+            households, boundaries=get_quantile_based_boundaries(
+              training_examples["households"], 7))
+          # Divide longitude into 10 buckets.
+          bucketized_longitude = tf.feature_column.bucketized_column(
+            longitude, boundaries=get_quantile_based_boundaries(
+              training_examples["longitude"], 10))
+          # Divide latitude into 10 buckets.
+          bucketized_latitude = tf.feature_column.bucketized_column(
+            latitude, boundaries=get_quantile_based_boundaries(
+              training_examples["latitude"], 10))
+          # Divide housing_median_age into 7 buckets.
+          bucketized_housing_median_age = tf.feature_column.bucketized_column(
+            housing_median_age, boundaries=get_quantile_based_boundaries(
+              training_examples["housing_median_age"], 7))
+          # Divide median_income into 7 buckets.
+          bucketized_median_income = tf.feature_column.bucketized_column(
+            median_income, boundaries=get_quantile_based_boundaries(
+              training_examples["median_income"], 7))
+          # Divide rooms_per_person into 7 buckets.
+          bucketized_rooms_per_person = tf.feature_column.bucketized_column(
+            rooms_per_person, boundaries=get_quantile_based_boundaries(
+              training_examples["rooms_per_person"], 7))
+          feature_columns = set([
+            bucketized_longitude,
+            bucketized_latitude,
+            bucketized_housing_median_age,
+            bucketized_households,
+            bucketized_median_income,
+            bucketized_rooms_per_person])
+          return feature_columns
+
+        _ = train_model(
+            learning_rate=1.0,
+            steps=500,
+            batch_size=100,
+            feature_columns=construct_feature_columns(),
+            training_examples=training_examples,
+            training_targets=training_targets,
+            validation_examples=validation_examples,
+            validation_targets=validation_targets)
+
+        Final RMS Value: 88.5
+
+        The buckets for Task 1 make sense as each of them will tell
+        information on a specific subset of data, for instance trends at
+        a certain latitude.
+
+    Task 2:
+        def construct_feature_columns():
+          households = tf.feature_column.numeric_column("households")
+          longitude = tf.feature_column.numeric_column("longitude")
+          latitude = tf.feature_column.numeric_column("latitude")
+          housing_median_age = tf.feature_column.numeric_column("housing_median_age")
+          median_income = tf.feature_column.numeric_column("median_income")
+          rooms_per_person = tf.feature_column.numeric_column("rooms_per_person")
+          # Divide households into 7 buckets.
+          bucketized_households = tf.feature_column.bucketized_column(
+            households, boundaries=get_quantile_based_boundaries(
+              training_examples["households"], 7))
+          # Divide longitude into 10 buckets.
+          bucketized_longitude = tf.feature_column.bucketized_column(
+            longitude, boundaries=get_quantile_based_boundaries(
+              training_examples["longitude"], 10))
+          # Divide latitude into 10 buckets.
+          bucketized_latitude = tf.feature_column.bucketized_column(
+            latitude, boundaries=get_quantile_based_boundaries(
+              training_examples["latitude"], 10))
+          # Divide housing_median_age into 7 buckets.
+          bucketized_housing_median_age = tf.feature_column.bucketized_column(
+            housing_median_age, boundaries=get_quantile_based_boundaries(
+              training_examples["housing_median_age"], 7))
+          # Divide median_income into 7 buckets.
+          bucketized_median_income = tf.feature_column.bucketized_column(
+            median_income, boundaries=get_quantile_based_boundaries(
+              training_examples["median_income"], 7))
+          # Divide rooms_per_person into 7 buckets.
+          bucketized_rooms_per_person = tf.feature_column.bucketized_column(
+            rooms_per_person, boundaries=get_quantile_based_boundaries(
+              training_examples["rooms_per_person"], 7))
+          # YOUR CODE HERE: Make a feature column for the long_x_lat feature cross
+          long_x_lat = tf.feature_column.crossed_column(
+          set([bucketized_longitude, bucketized_latitude]), hash_bucket_size=1000)
+          feature_columns = set([
+            bucketized_longitude,
+            bucketized_latitude,
+            bucketized_housing_median_age,
+            bucketized_households,
+            bucketized_median_income,
+            bucketized_rooms_per_person,
+            long_x_lat])
+          return feature_columns
+
+        Final RMS Value: 79.48
+
+        The latitude division is quite useful because houses at higher
+        latitude may have higher energy usage for heat in the winter.

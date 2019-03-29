@@ -1,0 +1,51 @@
+a:
+    The Pearson correlation coefficient measures the linear correlation
+    between two variables. The value is between 1 and -1, with 1 being
+    total positive linear correlation, 0 is no linear correlation at all,
+    and -1 is total negative linear correlation. Latitude-Latitude has
+    a Pearson correlation coefficient of 1.0, which makes sense because
+    they are the same set of data.
+
+b:
+    Task 1:
+        minimal_features = [
+          "median_income",
+          "latitude",
+        ]
+        minimal_training_examples = training_examples[minimal_features]
+        minimal_validation_examples = validation_examples[minimal_features]
+        _ = train_model(
+            learning_rate=0.01,
+            steps=500,
+            batch_size=5,
+            training_examples=minimal_training_examples,
+            training_targets=training_targets,
+            validation_examples=minimal_validation_examples,
+            validation_targets=validation_targets)
+
+        Final RMS Error: ~112
+
+    Task 2:
+        def select_and_transform_features(source_df):
+          LATITUDE_RANGES = zip(range(32, 44), range(33, 45))
+          selected_examples = pd.DataFrame()
+          selected_examples["median_income"] = source_df["median_income"]
+          for r in LATITUDE_RANGES:
+            selected_examples["latitude_%d_to_%d" % r] = source_df["latitude"].apply(
+              lambda l: 1.0 if l >= r[0] and l < r[1] else 0.0)
+          return selected_examples
+        selected_training_examples = select_and_transform_features(training_examples)
+        selected_validation_examples = select_and_transform_features(validation_examples)
+
+        _ = train_model(
+            learning_rate=0.01,
+            steps=500,
+            batch_size=5,
+            training_examples=selected_training_examples,
+            training_targets=training_targets,
+            validation_examples=selected_validation_examples,
+            validation_targets=validation_targets)
+
+        Final RMS Error: ~140
+
+    I was unable to improve on the Google-provided baselines.
