@@ -1,0 +1,27 @@
+Exercise 1:
+    Part i:
+        Cat training: 1000
+        Dog training: 1000
+        Cat validation: 500
+        Dog validation: 500
+    Part ii:
+        The convnet convolution uses 3x3 windows and then 2x2 windows for the maxpooling layers, which
+        is the same as in class. What is different is that the input is larger images (150x150) and is
+        also in color, making it a 3-D input layer.
+    Part iii:
+        In the intermediate layers the images become smaller and less detailed, until in lower layers
+        the images are no longer distinguishable.
+
+Exercise 2:
+    Part i:
+        Data augmentation fights overfitting by randomly transforming the training examples each time
+        they are used, so that the model will never see the exact same picture twice.
+    Part ii:
+        Results:
+            val_loss: 0.4911
+            val_acc: 0.7530
+        Parameters:
+            steps_per_epoch=100
+            epochs=30
+            validation_stpes=50
+            verbose=2
