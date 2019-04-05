@@ -1,0 +1,19 @@
+Part a:
+    Final RMSE: 0.44
+
+Part b:
+    L2 Loss does not penalize miscalculations when the output is seen as a probability. LogLoss
+    however does penalize "confidence errors" more severely.
+
+Parc c:
+    The RMSE for the logistic regression is worse, as expected because it properly penalizes the
+    errors explained above. Final RMSE: 0.55
+
+Part d:
+    Final RMSE: 0.46
+    AUC: 0.81
+    Accuracy on validation set: 0.78
+    Hyperparameters:
+        learning_rate: 0.000003
+        steps: 20000
+        batch_size: 500

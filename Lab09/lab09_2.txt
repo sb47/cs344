@@ -1,0 +1,15 @@
+Part a:
+    Regularizing by using a function that encourages zero weights will sparsify the the data. This
+    is useful because it will avoid overfitting and make the resulting model more efficient.
+
+Part b:
+    L1 regularization uses zero weights for parameters of the data features that are not important
+    for the solution. This greatly simplifies the dataset by only having features present that are
+    needed.
+
+Part c:
+    Final LogLoss value: 0.26
+    learning_rate=0.1
+    regularization_strength=0.1
+    steps=300
+    batch_size=100
