@@ -1,0 +1,11 @@
+Part a:
+    AdaGrad modifies the learning rate adaptively for each model
+    coefficient, which lowers the effective learning rate.
+Part b:
+    Task 1:
+        Final RMSE (validation) = 103.97
+    Task 2:
+        Final RMSE (validation) with Adagrad = 71.05
+        Final RMSE (validation) with ADAM = 69.37
+    Task 3:
+        Final RMSE (validation) = 71.92

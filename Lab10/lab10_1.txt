@@ -1,0 +1,15 @@
+Part a:
+    Keras is built on top of TensorFlow and is much easier to use,
+    especially to quickly set up a neural network with little code.
+    However, TensorFlow is more customizable. For my limited experience
+    building neural networks, I would prefer to use Keras.
+
+Part b:
+    Task 1:
+        learning_rate=0.001
+        steps=2000
+        batch_size=100
+        hidden_units=[10, 10]
+        Final validation RMSE = 112.64
+    Task 2:
+        Final test RMSE = 108.6

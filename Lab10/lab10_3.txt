@@ -1,0 +1,8 @@
+Part a:
+    The confusion matrix shows which classes were misclassified. This
+    acts as a measure of the inaccuracy of the model.
+Part b:
+    The TensorFlow network has a neural network specific configuration
+    with a hyperparameter for hidden units.
+Part c:
+    The image quality varies with the number of steps taken.

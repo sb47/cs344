@@ -1,0 +1,68 @@
+Part a:
+    Linear models can be better for simpler problems, as they require
+    less data to train.
+Part b:
+    The NN does debatably better by having better precision than the
+    linear model, but the linear model does have slightly better
+    accuracy.
+Part c:
+    An embedding is most useful with sparse data, which is usually not
+    the case for sentiment analysis tasks.
+Part d:
+    "bad" and "poor" have similar embeddings, which makes sense
+    because they both are adjectives with negative connotations.
+Part e:
+    Code:
+        # Create a feature column from "terms", using a full vocabulary file.
+        informative_terms = None
+        with io.open(terms_path, 'r', encoding='utf8') as f:
+          # Convert it to a set first to remove duplicates.
+          informative_terms = list(set(f.read().split()))
+
+        terms_feature_column = tf.feature_column.categorical_column_with_vocabulary_list(key="terms",
+                                                                                         vocabulary_list=informative_terms)
+
+        terms_embedding_column = tf.feature_column.embedding_column(terms_feature_column, dimension=2)
+        feature_columns = [ terms_embedding_column ]
+
+        my_optimizer = tf.train.AdagradOptimizer(learning_rate=0.1)
+        my_optimizer = tf.contrib.estimator.clip_gradients_by_norm(my_optimizer, 5.0)
+
+        classifier = tf.estimator.DNNClassifier(
+          feature_columns=feature_columns,
+          hidden_units=[10,10],
+          optimizer=my_optimizer
+        )
+
+        classifier.train(
+          input_fn=lambda: _input_fn([train_path]),
+          steps=1000)
+
+        evaluation_metrics = classifier.evaluate(
+          input_fn=lambda: _input_fn([train_path]),
+          steps=1000)
+        print("Training set metrics:")
+        for m in evaluation_metrics:
+          print(m, evaluation_metrics[m])
+        print("---")
+
+        evaluation_metrics = classifier.evaluate(
+          input_fn=lambda: _input_fn([test_path]),
+          steps=1000)
+
+        print("Test set metrics:")
+        for m in evaluation_metrics:
+          print(m, evaluation_metrics[m])
+        print("---")
+    Results:
+        loss 12.610561
+        accuracy_baseline 0.5
+        global_step 1000
+        recall 0.78824
+        auc 0.848292
+        prediction/mean 0.5632766
+        precision 0.7655194
+        label/mean 0.5
+        average_loss 0.5044225
+        auc_precision_recall 0.85302657
+        accuracy 0.7734
