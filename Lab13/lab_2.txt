@@ -1,0 +1,15 @@
+on(a, b)
+on(b, c)
+support(t, c)
+support(X, Y) -> on(Y, X)
+on(X, Y) -> above(X, Y)
+above(X, Y) ^ above(Y, Z) -> above(X, Z)
+=> above(a, t)?
+
+
+on(a, b) -> above(a, b)
+on(b, c) -> above(b, c)
+above(a, b) ^ above(b, c) -> above(a, c)
+support(t, c) -> on(c, t)
+on(c, t) -> above(c, t)
+above(a, c) ^ above(c, t) -> above(a, t)
